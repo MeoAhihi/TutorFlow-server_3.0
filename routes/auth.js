@@ -5,10 +5,6 @@ const jwt = require("jsonwebtoken");
 
 const { User } = require("../models");
 
-const testBodyMiddleware = (req, res, next) => {
-  console.log(req.body);
-  res.end();
-};
 
 const signAccessToken = (req, res, next) => {
   const user = req.user;
