@@ -58,4 +58,20 @@ router.patch("/", async function (req, res, next) {
   }
 });
 
+router.delete("/", async (req, res, next) => {
+  try {
+    const userId = req.decoded.id;
+    const user = await User.findByPk(userId);
+
+    if (user) {
+      await User.destroy({ where: { id: userId } });
+      res.json({ message: "User deleted successfully" });
+    } else {
+      res.status(404).json({ message: "User not found" });
+    }
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;
