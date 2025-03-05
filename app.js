@@ -9,6 +9,7 @@ const { decodeJwtMiddleware } = require("./middlewares/decodeToken");
 const indexRouter = require("./routes/index");
 const userRouter = require("./routes/users");
 const authRouter = require("./routes/auth");
+const studentRouter = require("./routes/students");
 
 const app = express();
 
@@ -24,8 +25,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
-app.use("/users", decodeJwtMiddleware, userRouter);
 app.use("/auth", authRouter);
+app.use("/users", userRouter);
+app.use("/students", studentRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

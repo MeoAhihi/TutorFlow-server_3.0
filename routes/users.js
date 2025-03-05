@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { User } = require("../models");
+const { decodeJwtMiddleware } = require("../middlewares/decodeToken");
 
 const userFields = [
   "fullname",
@@ -14,6 +15,7 @@ const userFields = [
   "biography",
 ];
 
+router.use(decodeJwtMiddleware);
 /* GET users listing. */
 router.get("/", async function (req, res, next) {
   try {
